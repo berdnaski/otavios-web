@@ -90,7 +90,6 @@ export default function BarberHome() {
   }
 
   const handleLogout = () => {
-    // Clear stored user data
     if (typeof window !== "undefined") {
       localStorage.removeItem("user")
       sessionStorage.removeItem("user")
@@ -98,8 +97,7 @@ export default function BarberHome() {
 
     toast.success("Logout realizado com sucesso!")
 
-    // Redirect to login page
-    router.push("/login")
+    router.push("/auth/login")
   }
 
   const loggedUser = typeof window !== "undefined" ? getStoredUser() : null
