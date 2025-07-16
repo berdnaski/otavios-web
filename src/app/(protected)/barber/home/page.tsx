@@ -90,6 +90,7 @@ export default function BarberHome() {
   }
 
   const handleLogout = () => {
+    // Clear stored user data
     if (typeof window !== "undefined") {
       localStorage.removeItem("user")
       sessionStorage.removeItem("user")
@@ -97,7 +98,8 @@ export default function BarberHome() {
 
     toast.success("Logout realizado com sucesso!")
 
-    router.push("/auth/login")
+    // Redirect to login page
+    router.push("/login")
   }
 
   const loggedUser = typeof window !== "undefined" ? getStoredUser() : null
@@ -105,27 +107,28 @@ export default function BarberHome() {
   return (
     <div className="min-h-screen bg-black text-white">
       <div className="sticky top-0 bg-black/95 backdrop-blur-sm border-b border-[#222121] z-10">
-        <div className="px-4 lg:px-8 py-4 max-w-7xl mx-auto">
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <h1 className="text-2xl lg:text-3xl font-bold text-[#e9e6e6]">Dashboard</h1>
-              <p className="text-sm text-gray-400">Otavio's Barbearia - Controle Financeiro</p>
+        <div className="px-4 lg:px-8 py-3 lg:py-4 max-w-7xl mx-auto">
+          <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between lg:gap-0">
+            <div className="flex-1 min-w-0">
+              <h1 className="text-xl lg:text-2xl xl:text-3xl font-bold text-[#e9e6e6] truncate">Dashboard</h1>
+              <p className="text-xs lg:text-sm text-gray-400 truncate">Otavio's Barbearia - Controle Financeiro</p>
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 lg:gap-3 flex-shrink-0">
               <NewAppointmentModal onAppointmentCreated={handleCreateAppointment}>
-                <Button className="bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white px-3 py-2 text-sm lg:px-4 lg:py-2">
-                  <Plus className="w-4 h-4 mr-2" />
-                  Novo Agendamento
+                <Button className="bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white px-2 py-1.5 text-xs lg:px-4 lg:py-2 lg:text-sm flex-1 lg:flex-initial">
+                  <Plus className="w-3 h-3 lg:w-4 lg:h-4 mr-1 lg:mr-2" />
+                  <span className="hidden sm:inline">Novo Agendamento</span>
+                  <span className="sm:hidden">Novo</span>
                 </Button>
               </NewAppointmentModal>
 
               <Button
                 onClick={handleLogout}
                 variant="outline"
-                className="border-red-500/20 text-red-400 hover:bg-red-500/10 hover:text-red-300 hover:border-red-500/30 px-3 py-2 text-sm lg:px-4 lg:py-2 bg-transparent"
+                className="border-red-500/20 text-red-400 hover:bg-red-500/10 hover:text-red-300 hover:border-red-500/30 px-2 py-1.5 text-xs lg:px-4 lg:py-2 lg:text-sm bg-transparent flex-shrink-0"
               >
-                <LogOut className="w-4 h-4 mr-2" />
+                <LogOut className="w-3 h-3 lg:w-4 lg:h-4 mr-1 lg:mr-2" />
                 Sair
               </Button>
             </div>
